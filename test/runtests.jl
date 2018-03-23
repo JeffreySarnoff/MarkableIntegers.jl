@@ -31,9 +31,5 @@ v = MInt.([1, 3, 5, 7, 3, 9, 11, 11, 15])
 @test !any(ismarked, v)
 
 @mark!(v[5]); @mark!(v[7]); @mark!(v[8])
-#                                   \  \   \
+#                                 \  \   \
 @test findall(ismarked, v)    == [5,  7,  8]
-#                                   |   |   |
-@test v[ map(ismarked, v) ] == [3, 11, 11]
-
-
