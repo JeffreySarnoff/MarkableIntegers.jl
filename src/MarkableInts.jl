@@ -1,6 +1,6 @@
 __precompile__()
 
-module MarkableInts
+module RemarkableInts
 
 export MInt128, MInt64, MInt32, MInt, MInt16,
     MInt8, MUInt128, MUInt64, MUInt32, MUInt,
@@ -36,4 +36,4 @@ macro unmark!(x)
     end
 end
 
-end # module MarkableInts
+end # module RemarkableInts
