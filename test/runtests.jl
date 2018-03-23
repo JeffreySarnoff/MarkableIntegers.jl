@@ -30,12 +30,10 @@ unmarked5  = markable5
 vec = MInt.([1, 3, 5, 7, 3, 9, 11, 11, 15])
 @test !any(ismarked, vec)
 
-@mark!(vec[5])
-@mark!(vec[7])
-@mark!(vec[8])
-
-@test any(ismarked, vec)
-@test findall(ismarked, vec)   == [5, 7, 8]
-@test vec[ map(ismarked, vec) ] == [5, 11, 11]
+@mark!(vec[5]); @mark!(vec[7]); @mark!(vec[8])
+#                                   \  \   \
+@test findall(ismarked, vec)    == [5,  7,  8]
+#                                   |   |   |
+@test vec[ map(ismarked, vec) ] == [3, 11, 11]
 
 
