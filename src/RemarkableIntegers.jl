@@ -1,19 +1,10 @@
-#=>
-
-Creating software coheres obtainable intent with the actual.
-
-Design is movement and the ideation of software is dance,
-Good code escribes source into eventhood; we the dancer.
-
-Copyright &copy; 2014-2018 by Jeffrey Sarnoff.  All Rights Reserved.
-
-=#
+__precompile__()
 
 module RemarkableIntegers
 
-export NoteInt128, NoteInt64, NoteInt32, NoteInt, NoteInt16,
-    NoteInt8, NoteUInt128, NoteUInt64, NoteUInt32, NoteUInt,
-    NoteUInt16, NoteUInt8, note, unnote, isnoted, @note!, @unnote!
+export MInt128, MInt64, MInt32, MInt, MInt16,
+    MInt8, MUInt128, MUInt64, MUInt32, MUInt,
+    MUInt16, MUInt8, mark, unmark, ismarked, @mark!, @unmark!
 
 import Base: @pure, sizeof, signed, unsigned,
     leading_zeros, trailing_zeros, leading_ones, trailing_ones,
@@ -31,18 +22,18 @@ include("bits.jl")
 include("compare.jl")
 
 
-macro note!(x)
+macro mark!(x)
     quote
-        $(esc(x)) = note($(esc(x)))
+        $(esc(x)) = mark($(esc(x)))
         return nothing
     end
 end
 
-macro unnote!(x)
+macro unmark!(x)
     quote
-        $(esc(x)) = unnote($(esc(x)))
+        $(esc(x)) = unmark($(esc(x)))
         return nothing
     end
 end
 
-end # module NoteableIntegers
+end # module MarkableIntegers
