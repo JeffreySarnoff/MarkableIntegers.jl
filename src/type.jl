@@ -142,11 +142,6 @@ for (M,I) in ((:MUInt128, :UInt128), (:MUInt64, :UInt64),
   end
 end
 
-string(x::MUInts) = string(unsigned(x))
-string(x::MInts)  = string(signed(x))
-
-show(io::IO, x::MIntegers) = print(io, string(x))
-show(x::MIntegers) = print(STDOUT, string(x))
 
 (&)(x::T, y::T) where {T<:MarkSigned} = imark(signed(x) & signed(y))
 (|)(x::T, y::T) where {T<:MarkSigned} = imark(signed(x) | signed(y))
@@ -183,3 +178,19 @@ rem(x::T, y::T) where {T<:MarkUnsigned} = imark(rem(unsigned(x), unsigned(y)))
 mod(x::T, y::T) where {T<:MarkUnsigned} = imark(mod(unsigned(x), unsigned(y)))
 divrem(x::T, y::T) where {T<:MarkUnsigned} = imark(divrem(unsigned(x), unsigned(y)))
 fldmod(x::T, y::T) where {T<:MarkUnsigned} = imark(fldmod(unsigned(x), unsigned(y)))
+
+
+
+
+
+if isdefined(Base, :stdout)
+    const StdOut = Base.stdout
+else
+    const StdOut = Base.STDOUT
+end
+
+string(x::MUInts) = string(unsigned(x))
+string(x::MInts)  = string(signed(x))
+
+show(io::IO, x::MIntegers) = print(io, string(x))
+show(x::MIntegers) = print(StdOut, string(x))
