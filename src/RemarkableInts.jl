@@ -16,12 +16,6 @@ import Base.Math: zero, one, iszero, isone, isinteger, typemax, typemin,
     (+), (-), (*), (/), (%), div, fld, cld, mod, rem, sqrt, cbrt
 
 
-include("type.jl")
-include("notation.jl")
-include("bits.jl")
-include("compare.jl")
-
-
 macro mark!(x)
     quote
         $(esc(x)) = mark($(esc(x)))
@@ -35,5 +29,12 @@ macro unmark!(x)
         return nothing
     end
 end
+
+include("type.jl")
+include("notation.jl")
+include("bits.jl")
+include("compare.jl")
+
+
 
 end # module RemarkableInts
