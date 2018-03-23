@@ -20,16 +20,16 @@ lsbit(::Type{Int32})    = 0x00000001%Int32
 lsbit(::Type{Int64})    = 0x0000000000000001%Int64
 lsbit(::Type{Int128})   = 0x00000000000000000000000000000001%Int128
 
-lsbit(::Type{NoteUInt8})    = 0x01%NoteUInt8
-lsbit(::Type{NoteUInt16})   = 0x0001%NoteUInt16
-lsbit(::Type{NoteUInt32})   = 0x00000001%NoteUInt32
-lsbit(::Type{NoteUInt64})   = 0x0000000000000001%NoteUInt64
-lsbit(::Type{NoteUInt128})  = 0x00000000000000000000000000000001%NoteUInt128
-lsbit(::Type{NoteInt8})     = 0x01%NoteInt8
-lsbit(::Type{NoteInt16})    = 0x0001%NoteInt16
-lsbit(::Type{NoteInt32})    = 0x00000001%NoteInt32
-lsbit(::Type{NoteInt64})    = 0x0000000000000001%NoteInt64
-lsbit(::Type{NoteInt128})   = 0x00000000000000000000000000000001%NoteInt128
+lsbit(::Type{MUInt8})    = 0x01%MUInt8
+lsbit(::Type{MUInt16})   = 0x0001%MUInt16
+lsbit(::Type{MUInt32})   = 0x00000001%MUInt32
+lsbit(::Type{MUInt64})   = 0x0000000000000001%MUInt64
+lsbit(::Type{MUInt128})  = 0x00000000000000000000000000000001%MUInt128
+lsbit(::Type{MInt8})     = 0x01%MInt8
+lsbit(::Type{MInt16})    = 0x0001%MInt16
+lsbit(::Type{MInt32})    = 0x00000001%MInt32
+lsbit(::Type{MInt64})    = 0x0000000000000001%MInt64
+lsbit(::Type{MInt128})   = 0x00000000000000000000000000000001%MInt128
 
 msbit(::Type{UInt8})    = 0x80
 msbit(::Type{UInt16})   = 0x8000
@@ -42,16 +42,16 @@ msbit(::Type{Int32})    = 0x80000000%Int32
 msbit(::Type{Int64})    = 0x8000000000000000%Int64
 msbit(::Type{Int128})   = 0x80000000000000000000000000000000%Int128
 
-msbit(::Type{NoteUInt8})    = 0x80%NoteUInt8
-msbit(::Type{NoteUInt16})   = 0x8000%NoteUInt16
-msbit(::Type{NoteUInt32})   = 0x80000000%NoteUInt32
-msbit(::Type{NoteUInt64})   = 0x8000000000000000%NoteUInt64
-msbit(::Type{NoteUInt128})  = 0x80000000000000000000000000000000%NoteUInt128
-msbit(::Type{NoteInt8})     = 0x80%NoteInt8
-msbit(::Type{NoteInt16})    = 0x8000%NoteInt16
-msbit(::Type{NoteInt32})    = 0x80000000%NoteInt32
-msbit(::Type{NoteInt64})    = 0x8000000000000000%NoteInt64
-msbit(::Type{NoteInt128})   = 0x80000000000000000000000000000000%NoteInt128
+msbit(::Type{MUInt8})    = 0x80%MUInt8
+msbit(::Type{MUInt16})   = 0x8000%MUInt16
+msbit(::Type{MUInt32})   = 0x80000000%MUInt32
+msbit(::Type{MUInt64})   = 0x8000000000000000%MUInt64
+msbit(::Type{MUInt128})  = 0x80000000000000000000000000000000%MUInt128
+msbit(::Type{MInt8})     = 0x80%MInt8
+msbit(::Type{MInt16})    = 0x8000%MInt16
+msbit(::Type{MInt32})    = 0x80000000%MInt32
+msbit(::Type{MInt64})    = 0x8000000000000000%MInt64
+msbit(::Type{MInt128})   = 0x80000000000000000000000000000000%MInt128
 
 msbits(::Type{UInt8})    = 0xfe      # (-one(Int8))%UInt8 << 1
 msbits(::Type{UInt16})   = 0xfffe
@@ -64,23 +64,23 @@ msbits(::Type{Int32})    = 0xfffffffe%Int32
 msbits(::Type{Int64})    = 0xfffffffffffffffe%Int64
 msbits(::Type{Int128})   = 0xfffffffffffffffffffffffffffffffe%Int128
 
-msbits(::Type{NoteUInt8})    = 0xfe%NoteUInt8      # (-one(Int8))%UInt8 << 1
-msbits(::Type{NoteUInt16})   = 0xfffe%NoteUInt16
-msbits(::Type{NoteUInt32})   = 0xfffffffe%NoteUInt32
-msbits(::Type{NoteUInt64})   = 0xfffffffffffffffe%NoteUInt64
-msbits(::Type{NoteUInt128})  = 0xfffffffffffffffffffffffffffffffe%NoteUInt128
-msbits(::Type{NoteInt8})     = 0xfe%NoteInt8
-msbits(::Type{NoteInt16})    = 0xfffe%NoteInt16
-msbits(::Type{NoteInt32})    = 0xfffffffe%NoteInt32
-msbits(::Type{NoteInt64})    = 0xfffffffffffffffe%NoteInt64
-msbits(::Type{NoteInt128})   = 0xfffffffffffffffffffffffffffffffe%NoteInt128
+msbits(::Type{MUInt8})    = 0xfe%MUInt8      # (-one(Int8))%UInt8 << 1
+msbits(::Type{MUInt16})   = 0xfffe%MUInt16
+msbits(::Type{MUInt32})   = 0xfffffffe%MUInt32
+msbits(::Type{MUInt64})   = 0xfffffffffffffffe%MUInt64
+msbits(::Type{MUInt128})  = 0xfffffffffffffffffffffffffffffffe%MUInt128
+msbits(::Type{MInt8})     = 0xfe%MInt8
+msbits(::Type{MInt16})    = 0xfffe%MInt16
+msbits(::Type{MInt32})    = 0xfffffffe%MInt32
+msbits(::Type{MInt64})    = 0xfffffffffffffffe%MInt64
+msbits(::Type{MInt128})   = 0xfffffffffffffffffffffffffffffffe%MInt128
 
-for (M,I) in ((:NoteUInt128, :UInt128), (:NoteUInt64, :UInt64),
-              (:NoteUInt32, :UInt32), (:NoteUInt16, :UInt16),
-              (:NoteUInt8, :UInt8),
-              (:NoteInt128, :Int128), (:NoteInt64, :Int64),
-              (:NoteInt32, :Int32), (:NoteInt16, :Int16),
-              (:NoteInt8, :Int8))
+for (M,I) in ((:MUInt128, :UInt128), (:MUInt64, :UInt64),
+              (:MUInt32, :UInt32), (:MUInt16, :UInt16),
+              (:MUInt8, :UInt8),
+              (:MInt128, :Int128), (:MInt64, :Int64),
+              (:MInt32, :Int32), (:MInt16, :Int16),
+              (:MInt8, :Int8))
   @eval begin
       bitsof(::Type{$M}) = bitsof($I) - 1
       msbit(::Type{$M})  = reinterpret($M, msbit($I))
