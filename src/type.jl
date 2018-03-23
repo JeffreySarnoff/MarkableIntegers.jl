@@ -13,8 +13,7 @@ primitive type MInt32  <: MarkSigned  32 end
 primitive type MInt16  <: MarkSigned  16 end
 primitive type MInt8   <: MarkSigned   8 end
 
-if Int64 === Int    ismarkable(x) ?  : throw(DomainError("$x"))
-
+if Int64 === Int
     const MInt  = MInt64
     const MUInt = MUInt64
 else
