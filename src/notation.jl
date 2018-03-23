@@ -10,8 +10,8 @@ mark(x::MUInt32)  = (|)(x, lsbit(MUInt32))
 mark(x::MUInt16)  = (|)(x, lsbit(MUInt16))
 mark(x::MUInt8)   = (|)(x, lsbit(MUInt8))
 
-unmark(x::T) where {T<:Signed}   = x
-unmark(x::T) where {T<:Unsigned} = x
+mark(x::T) where {T<:Signed}   = x
+mark(x::T) where {T<:Unsigned} = x
 
 
 unmark(x::MInt128) = (&)(x, msbits(MInt128))
