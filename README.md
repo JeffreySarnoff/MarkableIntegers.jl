@@ -18,10 +18,6 @@
 
 ## Types
 
-- the signed integer types `NoteInt8` .. `NoteInt128`
 
-- the unsigned integer types `NoteUInt8` .. `NoteUInt128`
-
-----
 
 ## Examples
