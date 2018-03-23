@@ -35,7 +35,7 @@ vec = MInt.([1, 3, 5, 7, 3, 9, 11, 11, 15])
 @mark!(vec[8])
 
 @test any(ismarked, vec)
-@test findall(ismarked, vec) = [3, 7, 8]
-@test map(ismarked, vec) = [5, 11, 11]
+@test findall(ismarked, vec)   == [5, 7, 8]
+@test vec[ ap(ismarked, vec) ] == [5, 11, 11]
 
 
