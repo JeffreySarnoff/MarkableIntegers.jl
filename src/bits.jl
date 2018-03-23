@@ -74,16 +74,3 @@ msbits(::Type{MInt16})    = 0xfffe%MInt16
 msbits(::Type{MInt32})    = 0xfffffffe%MInt32
 msbits(::Type{MInt64})    = 0xfffffffffffffffe%MInt64
 msbits(::Type{MInt128})   = 0xfffffffffffffffffffffffffffffffe%MInt128
-
-for (M,I) in ((:MUInt128, :UInt128), (:MUInt64, :UInt64),
-              (:MUInt32, :UInt32), (:MUInt16, :UInt16),
-              (:MUInt8, :UInt8),
-              (:MInt128, :Int128), (:MInt64, :Int64),
-              (:MInt32, :Int32), (:MInt16, :Int16),
-              (:MInt8, :Int8))
-  @eval begin
-      bitsof(::Type{$M}) = bitsof($I) - 1
-      msbit(::Type{$M})  = reinterpret($M, msbit($I))
-      lsbit(::Type{$M})  = reinterpret($M, lsbit($I))
-  end
-end
