@@ -26,8 +26,8 @@ unmarked5  = markable5
 @test !ismarked(unmarked5)
 @test markable5 == unmarked5
 
-# indexing       1  2  3  4  5  6   7   8   9
-vec = Markable.([1, 3, 5, 7, 3, 9, 11, 11, 15])
+# indexing   1  2  3  4  5  6   7   8   9
+vec = MInt.([1, 3, 5, 7, 3, 9, 11, 11, 15])
 @test !any(marked, vec)
 
 @mark!(vec[5])
