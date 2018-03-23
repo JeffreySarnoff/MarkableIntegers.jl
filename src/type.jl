@@ -1,4 +1,3 @@
-
 abstract type MarkUnsigned <: Unsigned end
 abstract type MarkSigned   <: Signed   end
 
@@ -14,7 +13,8 @@ primitive type MInt32  <: MarkSigned  32 end
 primitive type MInt16  <: MarkSigned  16 end
 primitive type MInt8   <: MarkSigned   8 end
 
-if Int64 === Int
+if Int64 === Int    ismarkable(x) ?  : throw(DomainError("$x"))
+
     const MInt  = MInt64
     const MUInt = MUInt64
 else
@@ -90,7 +90,8 @@ for (M,I) in (
         (:MUInt8, :Int8)
     )
   @eval begin
-    $M(x::$I) = reinterpret($M, x)
+    $M(x::$I) = ismarkable(x) ? reinterpret($M, x<<1) : throw(OverflowError("$x"))
+    $I(x::$M) = reinterpret($I, x) >> 1
     promote_rule(::Type{$M}, ::Type{$I}) = $M
     convert(::Type{$M}, x::$I) = reinterpret($M, x)
   end
@@ -128,11 +129,6 @@ for (M,I) in ((:MUInt128, :UInt128), (:MUInt64, :UInt64),
     (&)(x::$M, y::$M) = reinterpret($M, (&)(reinterpret($I,x), reinterpret($I,y)))
     (⊻)(x::$M, y::$M) = reinterpret($M, (xor)(reinterpret($I,x), reinterpret($I,y)))
 
-    $M(x::$I) = ismarkable(x) ? reinterpret($M, x<<1) : throw(DomainError("$x"))
-    $I(x::$M) = reinterpret($I, x) >> 1
-    @inline convert(::Type{$M}, x::$I) =
-        ismarkable(x) ? reinterpret($M, x<<1) : throw(DomainError("$x"))
-    @inline convert(::Type{$I}, x::$M) = reinterpret($I,x) >> 1
     leading_zeros(x::$M)  = leading_zeros(reinterpret($I,x) | lsbit($I))
     leading_ones(x::$M)   = leading_ones(reinterpret($I,x) & ~lsbit($I))
     trailing_zeros(x::$M) = trailing_zeros((reinterpret($I,x) >> 1) | msbit($I))
