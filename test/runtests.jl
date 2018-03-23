@@ -28,14 +28,14 @@ unmarked5  = markable5
 
 # indexing   1  2  3  4  5  6   7   8   9
 vec = MInt.([1, 3, 5, 7, 3, 9, 11, 11, 15])
-@test !any(marked, vec)
+@test !any(ismarked, vec)
 
 @mark!(vec[5])
 @mark!(vec[7])
 @mark!(vec[8])
 
-@test any(marked, vec)
-@test findall(marked, vec) = [3, 7, 8]
-@test map(marked, vec) = [5, 11, 11]
+@test any(ismarked, vec)
+@test findall(ismarked, vec) = [3, 7, 8]
+@test map(ismarked, vec) = [5, 11, 11]
 
 
