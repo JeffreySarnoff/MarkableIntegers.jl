@@ -10,7 +10,7 @@ import Base: @pure, sizeof, signed, unsigned,
     leading_zeros, trailing_zeros, leading_ones, trailing_ones,
     convert, promote_rule, string, show,
     (&), (|), (⊻), (<=), (<), (==), (!=), (>=), (>), isless, isequal,
-    ismarked 
+    ismarked, mark, unmark 
 
 import Base.Math: zero, one, iszero, isone, isinteger, typemax, typemin,
     isodd, iseven, sign, signbit, abs, copysign, flipsign,
