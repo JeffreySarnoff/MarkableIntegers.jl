@@ -10,7 +10,7 @@ ordinary5  = 5
 markable5  = MInt(5)
 @test !ismarked(markable5)
 @mark!(markable5)              # markable Ints can be marked
-@test Ismarked(markable5)        # 
+@test ismarked(markable5)        # 
 @unmark!(markable5)            # and unmarked
 @test !ismarked(markable5)       # 
 @mark!(markable5)              # and remarked
