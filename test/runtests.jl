@@ -1,4 +1,4 @@
-using RemarkableIntegers
+using RemarkableInts
 using Test
 
 ordinary5  = 5
