@@ -1,45 +1,47 @@
 
-note(x::NoteInt128) = (|)(x, lsbit(NoteInt128))
-note(x::NoteInt64)  = (|)(x, lsbit(NoteInt64))
-note(x::NoteInt32)  = (|)(x, lsbit(NoteInt32))
-note(x::NoteInt16)  = (|)(x, lsbit(NoteInt16))
-note(x::NoteInt8)   = (|)(x, lsbit(NoteInt8))
+mark(x::MarkInt128) = (|)(x, lsbit(MarkInt128))
+mark(x::MarkInt64)  = (|)(x, lsbit(MarkInt64))
+mark(x::MarkInt32)  = (|)(x, lsbit(MarkInt32))
+mark(x::MarkInt16)  = (|)(x, lsbit(MarkInt16))
+mark(x::MarkInt8)   = (|)(x, lsbit(MarkInt8))
 
-note(x::NoteUInt128) = (|)(x, lsbit(NoteUInt128))
-note(x::NoteUInt64)  = (|)(x, lsbit(NoteUInt64))
-note(x::NoteUInt32)  = (|)(x, lsbit(NoteUInt32))
-note(x::NoteUInt16)  = (|)(x, lsbit(NoteUInt16))
-note(x::NoteUInt8)   = (|)(x, lsbit(NoteUInt8))
+mark(x::MarkUInt128) = (|)(x, lsbit(MarkUInt128))
+mark(x::MarkUInt64)  = (|)(x, lsbit(MarkUInt64))
+mark(x::MarkUInt32)  = (|)(x, lsbit(MarkUInt32))
+mark(x::MarkUInt16)  = (|)(x, lsbit(MarkUInt16))
+mark(x::MarkUInt8)   = (|)(x, lsbit(MarkUInt8))
 
-unnote(x::NoteInt128) = (&)(x, msbits(NoteInt128))
-unnote(x::NoteInt64)  = (&)(x, msbits(NoteInt64))
-unnote(x::NoteInt32)  = (&)(x, msbits(NoteInt32))
-unnote(x::NoteInt16)  = (&)(x, msbits(NoteInt16))
-unnote(x::NoteInt8)   = (&)(x, msbits(NoteInt8))
+unmark(x::MarkInt128) = (&)(x, msbits(MarkInt128))
+unmark(x::MarkInt64)  = (&)(x, msbits(MarkInt64))
+unmark(x::MarkInt32)  = (&)(x, msbits(MarkInt32))
+unmark(x::MarkInt16)  = (&)(x, msbits(MarkInt16))
+unmark(x::MarkInt8)   = (&)(x, msbits(MarkInt8))
 
-unnote(x::NoteUInt128) = (&)(x, msbits(NoteUInt128))
-unnote(x::NoteUInt64)  = (&)(x, msbits(NoteUInt64))
-unnote(x::NoteUInt32)  = (&)(x, msbits(NoteUInt32))
-unnote(x::NoteUInt16)  = (&)(x, msbits(NoteUInt16))
-unnote(x::NoteUInt8)   = (&)(x, msbits(NoteUInt8))
+unmark(x::MarkUInt128) = (&)(x, msbits(MarkUInt128))
+unmark(x::MarkUInt64)  = (&)(x, msbits(MarkUInt64))
+unmark(x::MarkUInt32)  = (&)(x, msbits(MarkUInt32))
+unmark(x::MarkUInt16)  = (&)(x, msbits(MarkUInt16))
+unmark(x::MarkUInt8)   = (&)(x, msbits(MarkUInt8))
 
-isnoted(x::NoteInt128) = (&)(x, lsbit(NoteInt128)) === lsbit(NoteInt128)
-isnoted(x::NoteInt64)  = (&)(x, lsbit(NoteInt64))  === lsbit(NoteInt64)
-isnoted(x::NoteInt32)  = (&)(x, lsbit(NoteInt32))  === lsbit(NoteInt32)
-isnoted(x::NoteInt16)  = (&)(x, lsbit(NoteInt16))  === lsbit(NoteInt16)
-isnoted(x::NoteInt8)   = (&)(x, lsbit(NoteInt8))   === lsbit(NoteInt8)
+ismarked(x::MarkInt128) = (&)(x, lsbit(MarkInt128)) === lsbit(MarkInt128)
+ismarked(x::MarkInt64)  = (&)(x, lsbit(MarkInt64))  === lsbit(MarkInt64)
+ismarked(x::MarkInt32)  = (&)(x, lsbit(MarkInt32))  === lsbit(MarkInt32)
+ismarked(x::MarkInt16)  = (&)(x, lsbit(MarkInt16))  === lsbit(MarkInt16)
+ismarked(x::MarkInt8)   = (&)(x, lsbit(MarkInt8))   === lsbit(MarkInt8)
 
-isnoted(x::NoteUInt128) = (&)(x, lsbit(NoteUInt128)) === lsbit(NoteUInt128)
-isnoted(x::NoteUInt64)  = (&)(x, lsbit(NoteUInt64))  === lsbit(NoteUInt64)
-isnoted(x::NoteUInt32)  = (&)(x, lsbit(NoteUInt32))  === lsbit(NoteUInt32)
-isnoted(x::NoteUInt16)  = (&)(x, lsbit(NoteUInt16))  === lsbit(NoteUInt16)
-isnoted(x::NoteUInt8)   = (&)(x, lsbit(NoteUInt8))   === lsbit(NoteUInt8)
+ismarked(x::MarkUInt128) = (&)(x, lsbit(MarkUInt128)) === lsbit(MarkUInt128)
+ismarked(x::MarkUInt64)  = (&)(x, lsbit(MarkUInt64))  === lsbit(MarkUInt64)
+ismarked(x::MarkUInt32)  = (&)(x, lsbit(MarkUInt32))  === lsbit(MarkUInt32)
+ismarked(x::MarkUInt16)  = (&)(x, lsbit(MarkUInt16))  === lsbit(MarkUInt16)
+ismarked(x::MarkUInt8)   = (&)(x, lsbit(MarkUInt8))   === lsbit(MarkUInt8)
 
-isnoted(x::T) where {T<:Signed}   = false
-isnoted(x::T) where {T<:Unsigned} = false
+ismarked(x::T) where {T<:Signed}   = false
+ismarked(x::T) where {T<:Unsigned} = false
 
-@inline noted(x::Vector{T}) where {T<:NoteIntegers} = map(isnoted, x)
-findall(x::Vector{T}) where {T<:NoteIntegers}  = findall(noted(x))
+@inline markd(x::Vector{T}) where {T<:MarkIntegers} = map(ismarked, x)
+findall(x::Vector{T}) where {T<:MarkIntegers}  = findall(markd(x))
 findallnot(x) = map((!),findall(x))
-allnoted(x::Vector{T}) where {T<:NoteIntegers}   = x[findall(x)]
-allunnoted(x::Vector{T}) where {T<:NoteIntegers} = x[findallnot(x)]
+allmarked(x::Vector{T}) where {T<:MarkIntegers}   = x[findall(x)]
+allunmarked(x::Vector{T}) where {T<:MarkIntegers} = x[findallnot(x)]
+
+allumarked(x::Vector{T}) where {T<:NoteIntegers} = x[findallnot(x)]
