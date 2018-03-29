@@ -1,9 +1,43 @@
+
+"""
+```julia
+three = 3
+3
+markable_three = Markable(three)
+3
+isunmarked(markable_three)
+true
+@mark!(markable_three)
+3
+ismarked(markable_three)
+true
+```
+"""
 macro mark!(x)
     quote
         $(esc(x)) = reinterpret(typeof($(esc(x))), lsbit(typeof($(esc(x)))) | ($(esc(x))))
     end
 end
 
+
+"""
+```julia
+three = 3
+3
+markable_three = Markable(three)
+3
+isunmarked(markable_three)
+true
+@mark!(markable_three)
+3
+ismarked(markable_three)
+true
+@unmark!(markable_three)
+3
+ismarked(markable_three)
+false
+```
+"""
 macro unmark!(x)
     quote
         $(esc(x)) = reinterpret(typeof($(esc(x))), msbitsof($(esc(x))))
@@ -43,37 +77,3 @@ findall(x::Vector{T}) where {T<:MarkableInteger}  = findall(map(ismarked, x))
 findallnot(x) = map((!),findall(x))
 allmarked(x::Vector{T}) where {T<:MarkableInteger}   = x[findall(x)]
 allunmarked(x::Vector{T}) where {T<:MarkableInteger} = x[findallnot(x)]
-
-"""
-```julia
-three = 3
-3
-markable_three = Markable(three)
-3
-isunmarked(markable_three)
-true
-@mark!(markable_three)
-3
-ismarked(markable_three)
-true
-```
-""" @mark!
-
-"""
-```julia
-three = 3
-3
-markable_three = Markable(three)
-3
-isunmarked(markable_three)
-true
-@mark!(markable_three)
-3
-ismarked(markable_three)
-true
-@unmark!(markable_three)
-3
-ismarked(markable_three)
-false
-```
-""" @unmark!
