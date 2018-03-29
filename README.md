@@ -22,6 +22,11 @@ You may be seeking to identify regions within the dataform or datastream that ar
 
 MarkableIntegers bring the ability to provide and refine algorithmic focus into the data per se.  For some applications, this suffices.  For others, intelligent use of ancillary data structures and dynamic update therewith in concert with markable integers is the right complement.
 
+----
+
+## Techniques (please add yours)
+
+An easy way to find more lengthy runs of marked values is to run length encode the Bool sequence obtained with map(ismarked, seq).  A way to find more highly valued regions of marked values is to sum over each run.
 
 ----
 ## Introduction
@@ -30,7 +35,7 @@ There are `Markable` versions of each `Signed` (`Int8`, `Int16`, `Int32`, `Int64
 
 For most uses, you do not need to be that specific.  Variables that hold markable integers are initialized with (constructed from) some `Signed` or `Unsigned` value (or with e.g. `zero(MarkInt)`, `one(MarkInt16)`).
 
-You can use `Unmarked` or `Marked` with any legitimate initializer and forget about the specific type names. `ismarked` and `isunmarked` are provided to ascertain markedness following computation.
+You can use `Unmarked` or `Marked` with any legitimate initializer and forget about the specific type names. `ismarked` and `isunmarked` are provided to ascertain markedness during computation.  `allmarked` and `allunmarked` let you collect over markedness.
 
 ```julia
 julia> an_unmarked_value = Unmarked(10)
@@ -101,30 +106,13 @@ julia> typeof(two), typeof(three)
 (Int64, UInt16)
 ```
 
-You can obtain the indices of all marked and all unmarked constituents with `find_marked`, `find_unmarked`. You can obtain the values of all marked and of all unmarked constituents with `all_marked`, `all_unmarked`.
-
+You can gather the marked values and the unmarked values.
 ```julia
-julia> seq = [Marked(1), Unmarked(20), Unmarked(300), Marked(4000), Unmarked(1)];
-julia> find_marked(seq)
-2-element Array{Int64,1}:
- 1
- 4
-julia> all_marked(seq)
-2-element Array{MarkInt64,1}:
-    1
- 4000
-julia> find_unmarked(seq)
-3-element Array{Int64,1}:
- 2
- 3
- 5
-julia> all_unmarked(seq)
-3-element Array{MarkInt64,1}:
-  20
- 300
-   1
-```
+julia> seq = [Marked(1), Unmarked(2), Unmarked(3), Marked(4), Unmarked(1)]
+julia> allmarked(seq)
+julia> allunmarked(seq)
 
+```
 ----
 
 ## Exports
@@ -142,10 +130,7 @@ julia> all_unmarked(seq)
 
 #### Predicates
  - `ismarked`, `isunmarked`
-
-#### Collectors
- - `find_marked`, `find_unmarked`
- - `all_marked`, `all_unmarked`
+ - `allmarked`, `allunmarked`
  
 #### Comparatives
   - `==`, `!=`, `<=`, `<`, `>=`, `>`
