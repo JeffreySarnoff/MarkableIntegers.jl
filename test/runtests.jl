@@ -4,7 +4,7 @@ using Test
 pos1, pos2 = Int16( 1),  2
 neg1, neg2 = Int16(-1), -2
 
-pos1_nomark, pos2_nomark = Markable(pos1), Markable(pos2)
+pos1_nomark, pos2_nomark = Unmarked(pos1), Unmarked(pos2)
 neg1_nomark, neg2_nomark = Unmarked(neg1), Unmarked(neg2)
 
 pos1_marked, pos2_marked = Marked(pos1), Marked(pos2_nomark)
