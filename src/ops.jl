@@ -2,10 +2,10 @@
 for F in (:typemax, :typemin, :zero, :one)
   @eval begin
     @pure function $F(::Type{M}) where {M<:MarkableInteger}
-        Markable($F(itype(M)))
+        Unmarked($F(itype(M)))
     end
     @pure function $F(x::M) where {M<:MarkableInteger}
-        Markable($F(itype(M)))
+        Unmarked($F(itype(M)))
     end
   end
 end
