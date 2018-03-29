@@ -13,6 +13,15 @@
 
 > _this package requires Julia v0.7-_
 
+----
+## Purpose
+
+MarkableIntegers allow a sequence or mesh or voxel collection or time series that is comprised of integer values to distinguish any one or more of the constituent numbers with a mark (a re-find-able tag).  Marking one value does not mean that all other occurances of that value become marked.  You may choose to mark some, all or none of the other occurances of that value.
+
+You may be seeking to identify regions within the dataform or datastream that are of some greater interest.  Often this requires preliminary identification, contextual refinement, and revisiting.  There are well-know methods to manage this sort of incremental refinement.  All lean on ancillary data structures and dynamic update.
+
+MarkableIntegers bring the ability to provide and refine algorithmic focus into the data per se.  For some applications, this suffices.  For others, intelligent use of ancillary data structures and dynamic update therewith in concert with markable integers is the right complement.
+
 
 ----
 ## Introduction
