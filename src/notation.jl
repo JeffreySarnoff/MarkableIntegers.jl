@@ -27,12 +27,16 @@ for (M,I) in ((:MarkInt128, :Int128), (:MarkInt64, :Int64),
     
     mtype(::Type{$I}) = $M
     mtype(::Type{$M}) = $M
-    mtype(x::$I) = reinterpret($M,x)
-    mtype(x::$M) = x
     itype(::Type{$I}) = $I
     itype(::Type{$M}) = $I
+    mtype(x::$I) = reinterpret($M,x)
+    mtype(x::$M) = x
     itype(x::$I) = x
     itype(x::$M) = reinterpret($I,x)
+    mtyped(x::$I) = $M(x)
+    mtyped(x::$M) = x
+    ityped(x::$M) = $I(x)
+    ityped(x::$I) = x
   end
 end
 
