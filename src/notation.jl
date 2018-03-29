@@ -24,6 +24,15 @@ for (M,I) in ((:MarkInt128, :Int128), (:MarkInt64, :Int64),
     unmark(x::$M) = reinterpret($M, reinterpret($I,x) & msbits($I))
     mark(x::$I) = Marked(x)
     unmark(x::$I) = Unmarked(x)
+    
+    mtype(::Type{$I}) = $M
+    mtype(::Type{$M}) = $M
+    mtype(x::$I) = reinterpret($M,x)
+    mtype(x::$M) = x
+    itype(::Type{$I}) = $I
+    itype(::Type{$M}) = $I
+    itype(x::$I) = x
+    itype(x::$M) = reinterpret($I,x)
   end
 end
 
