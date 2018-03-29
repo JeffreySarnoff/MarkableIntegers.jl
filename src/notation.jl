@@ -61,7 +61,7 @@ for (M,I) in ((:MarkInt128, :Int128), (:MarkInt64, :Int64),
     @inline mtype(x::$I) = $M
     @inline mtype(x::$M) = $M
     @inline itype(x::$I) = $I
-    @inline itype(x::$M})= $I
+    @inline itype(x::$M) = $I
     @inline mtyped(x::$I) = $M(x)
     @inline mtyped(x::$M) = x
     @inline ityped(x::$M) = $I(x)
