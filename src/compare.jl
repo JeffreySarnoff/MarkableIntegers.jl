@@ -1,4 +1,4 @@
-ffor OP in (:(==), :(!=), :(<=), :(>=), :(<), :(>))
+for OP in (:(==), :(!=), :(<=), :(>=), :(<), :(>))
     @eval begin
         function $OP(a::T, b::T) where {T<:MarkableInteger}
             ia = ityped(a)
