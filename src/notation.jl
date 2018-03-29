@@ -40,11 +40,10 @@ for (M,I) in ((:MarkInt128, :Int128), (:MarkInt64, :Int64),
   end
 end
 
-findall(x::Vector{T}) where {T<:MarkableIntegers}  = findall(map(ismarked, x))
+findall(x::Vector{T}) where {T<:MarkableInteger}  = findall(map(ismarked, x))
 findallnot(x) = map((!),findall(x))
-allmarked(x::Vector{T}) where {T<:MarkableIntegers}   = x[findall(x)]
-allunmarked(x::Vector{T}) where {T<:MarkableIntegers} = x[findallnot(x)]
-
+allmarked(x::Vector{T}) where {T<:MarkableInteger}   = x[findall(x)]
+allunmarked(x::Vector{T}) where {T<:MarkableInteger} = x[findallnot(x)]
 
 """
 ```julia
