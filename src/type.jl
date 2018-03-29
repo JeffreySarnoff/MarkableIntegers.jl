@@ -72,13 +72,6 @@ for (RU,U,RS,S) in (
 end
 
 
-
-Markable(x::U) where {U<:Unsigned} = mtype(x)
-Markable(x::S) where {S<:Signed} = mtype(x)
-
-Markable(x::U) where {U<:MarkableUnsigned} = x
-Markable(x::S) where {S<:MarkableSigned} = x
-
 function Marked(x::I) where {I<:Union{Signed,Unsigned}}
     T = mtype(I)
     z = T(x)
@@ -101,15 +94,6 @@ end
     return reinterpret(M, msbitsof(x))
 end
 
-Markable(x) = Unmarked(x)
-
-"""
-   Markable(::Type{<:Signed})   ⇢ T<:MarkableSigned
-   Markable(::Type{<:Unsigned}) ⇢ T<:MarkableUnsigned
-
-MarkInt16 === Markable(Int16)
-
-""" Markable
 
 """
    Unmarked(x<:Signed)   ⇢ x<:MarkableSigned    && isunmarked(x)
