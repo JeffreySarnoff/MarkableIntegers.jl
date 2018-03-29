@@ -1,4 +1,4 @@
-# MarkableIntegers
+# Markable&thinsp;Integers
 
 ### Signed and Unsigned Integers, individually [un]markable.
 
