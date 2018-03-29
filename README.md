@@ -1,4 +1,4 @@
-# RemarkableInts
+# MarkableIntegers
 
 ### Signed and Unsigned Integers, individually [un]markable.
 
@@ -18,15 +18,19 @@
 
 ## Types
 
-- MInt, MInt8, MInt16, MInt32, MInt64, MInt128
-- MUInt, MUInt8, MUInt16, MUInt32, MUInt64, MUInt128
+#### abstract and collective
+- MarkableInteger, MarkableSigned, MarkableUnsigned
+
+#### concrete
+- MarkInt, MarkInt8, MarkInt16, MarkInt32, MarkInt64, MarkInt128
+- MarkUInt, MarkUInt8, MarkUInt16, MarkUInt32, MarkUInt64, MarkUInt128
 
 
 ## Examples
 ```julia
-julia> using RemarkableInts
+julia> using MarkableIntegers
 
-julia> markable5  = MInt(5)
+julia> markable5  = MarkInt(5)
 5
 julia> !ismarked(markable5)
 true
@@ -35,17 +39,19 @@ julia> @mark!(markable5)          # markable Ints can be marked
 julia> ismarked(markable5)
 true
 julia> @unmark!(markable5)        # and unmarked
-julia> !ismarked(markable5)
+5
+julia> ismarked(markable5)
 true
 julia> @mark!(markable5)          # and remarked
+5
 julia> ismarked(markable5)
 true
 
-julia> markable5  = MUInt(5);
+julia> markable5  = MarkUInt(5);
 julia> unmarked5  = markable5;
 
 julia> @mark!(markable5)
-
+5
 julia> markable5 == unmarked5   # marked and unmarked vars compare properly
 true
 ```
