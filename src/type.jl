@@ -94,6 +94,8 @@ end
     return reinterpret(M, msbitsof(x))
 end
 
+Integer(x::M) where {M<:MarkableSigned} = Signed(x)
+Integer(x::M) where {M<:MarkableUnsigned} = Unsigned(x)
 
 """
    Unmarked(x<:Signed)   ⇢ x<:MarkableSigned    && isunmarked(x)
