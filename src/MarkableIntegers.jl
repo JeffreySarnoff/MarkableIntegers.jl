@@ -14,7 +14,8 @@ import Base: @pure, promote_type, promote_rule, convert, mark, unmark, ismarked,
     leading_zeros, trailing_zeros, leading_ones, trailing_ones,
     convert, promote_rule, string, show,
     (<=), (<), (==), (!=), (>=), (>), isless, isequal,
-    (~), (&), (|), (⊻)
+    (~), (&), (|), (⊻),
+    findall
 
 import Base.Math: zero, one, iszero, isone, isinteger, typemax, typemin,
     isodd, iseven, sign, signbit, abs, copysign, flipsign,
