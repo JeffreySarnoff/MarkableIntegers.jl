@@ -110,6 +110,7 @@ macro unmark!(x)
 end
 
 include("type.jl")
+include("promote.jl")
 include("notation.jl")
 include("bits.jl")
 include("compare.jl")
