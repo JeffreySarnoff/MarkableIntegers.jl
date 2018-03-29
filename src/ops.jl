@@ -19,11 +19,12 @@ for F in (:iszero, :isone, :iseven, :isodd)
   end
 end
 
+
 for F in (:leading_zeros, :leading_ones, :trailing_zeros, :trailing_ones,
           :count_zeros, :count_ones, :abs, :(-))
   @eval begin
     function $F(x::M) where {M<:MarkableInteger}
-        xx = itype(x)
+        xx = itype(x) >> 1
         zz = $F(xx)
         z = Unmarked(zz)
         z |= any_lsbits(x)
@@ -35,8 +36,8 @@ end
 for F in (:(|), :(&), :(⊻))
   @eval begin
     function $F(x::M, y::M) where {M<:MarkableInteger}
-        xx = itype(x)
-        yy = itype(y)
+        xx = ityped(x) >> 1
+        yy = ityped(y) >> 1
         zz = $F(xx, yy)
         z = zz << 1
         !(zz === z >> 1) && throw(DomainError("$x, $y"))
@@ -58,8 +59,8 @@ for F in(:flipsign, :copysign,
          :checked_mod, :checked_mul, :checked_rem, :checked_sub)
   @eval begin
     function $F(x::M, y::M) where {M<:MarkableInteger}
-        xx = itype(x)
-        yy = itype(y)
+        xx = ityped(x) >> 1
+        yy = ityped(y) >> 1
         zz = $F(xx, yy)
         z = zz << 1
         !(zz === z >> 1) && throw(DomainError("$x, $y"))
