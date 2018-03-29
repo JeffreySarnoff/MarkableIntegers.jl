@@ -44,3 +44,38 @@ findall(x::Vector{T}) where {T<:MarkedIntegers}  = findall(map(ismarked, x))
 findallnot(x) = map((!),findall(x))
 allmarked(x::Vector{T}) where {T<:MarkedIntegers}   = x[findall(x)]
 allunmarked(x::Vector{T}) where {T<:MarkkedIntegers} = x[findallnot(x)]
+
+
+"""
+```julia
+three = 3
+3
+markable_three = Markable(three)
+3
+isunmarked(markable_three)
+true
+@mark!(markable_three)
+3
+ismarked(markable_three)
+true
+```
+""" @mark!
+
+"""
+```julia
+three = 3
+3
+markable_three = Markable(three)
+3
+isunmarked(markable_three)
+true
+@mark!(markable_three)
+3
+ismarked(markable_three)
+true
+@unmark!(markable_three)
+3
+ismarked(markable_three)
+false
+```
+""" @unmark!
