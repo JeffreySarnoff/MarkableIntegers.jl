@@ -1,7 +1,6 @@
 macro mark!(x)
     quote
-        $(esc(x)) = reinterpret(typeof($(esc(x))), 
-                                lsbit(typeof($(esc(x)))) | ($(esc(x))))
+        $(esc(x)) = reinterpret(typeof($(esc(x))), lsbit(typeof($(esc(x)))) | ($(esc(x))))
     end
 end
 
