@@ -3,7 +3,7 @@
 ```julia
 three = 3
 3
-markable_three = Markable(three)
+markable_three = Unmarked(three)
 3
 isunmarked(markable_three)
 true
@@ -24,7 +24,7 @@ end
 ```julia
 three = 3
 3
-markable_three = Markable(three)
+markable_three = Unmarked(three)
 3
 isunmarked(markable_three)
 true
