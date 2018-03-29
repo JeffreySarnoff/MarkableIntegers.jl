@@ -25,7 +25,7 @@ for F in (:leading_zeros, :leading_ones, :trailing_zeros, :trailing_ones,
     function $F(x::M) where {M<:MarkableInteger}
         xx = itype(x)
         zz = $F(xx)
-        z = Markable(zz)
+        z = Unmarked(zz)
         z |= any_lsbits(x)
         return z
     end
