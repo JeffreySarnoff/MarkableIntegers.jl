@@ -1,35 +1,65 @@
-using RemarkableInts
+using MarkableIntegers
 using Test
 
-ordinary5  = 5
-@test !ismarked(ordinary5)       # with ordinary Ints (UInts)
-@unmark!(ordinary5)            # @mark!, @unmark! are allowed
-@mark!(ordinary5)              # (to simplify mixed use)
-@test !ismarked(ordinary5)       # they do nothing
+using RemarkableIntegers
+using Test
 
-markable5  = MInt(5)
-@test !ismarked(markable5)
-@mark!(markable5)              # markable Ints can be marked
-@test ismarked(markable5)        # 
-@unmark!(markable5)            # and unmarked
-@test !ismarked(markable5)       # 
-@mark!(markable5)              # and remarked
-@test ismarked(markable5)        # 
+pos1, pos2 = Int16( 1),  2
+neg1, neg2 = Int16(-1), -2
 
 
-# marked and unmarked vars of equal value measure equal
+pos1_nomark, pos2_nomark = Markable(pos1), Markable(pos2)
+neg1_nomark, neg2_nomark = Unmarked(neg1), Unmarked(neg2)
 
-markable5  = MUInt(5)
-unmarked5  = markable5
-@mark!(markable5)
-@test ismarked(markable5)
-@test !ismarked(unmarked5)
-@test markable5 == unmarked5
+pos1_marked, pos2_marked = Marked(pos1), Marked(pos2_nomark)
+neg1_marked, neg2_marked = Marked(neg1), Marked(neg2_nomark)
 
-# indexing   1  2  3  4  5  6   7   8   9
-v = MInt.([1, 3, 5, 7, 3, 9, 11, 11, 15])
-@test !any(ismarked, v)
 
-@mark!(v[5]); @mark!(v[7]); @mark!(v[8])
-#                                 \  \   \
-@test findall(ismarked, v)    == [5,  7,  8]
+
+@test ismarked(pos1)        == false
+@test ismarked(pos1_nomark) == false
+@test ismarked(pos1_marked) == true
+
+@test pos2        == pos2_nomark
+@test pos2        == pos2_marked
+@test pos2_nomark == pos2_marked
+
+@test pos2        == pos2_nomark
+@test pos2        == pos2_marked
+@test pos2_nomark == pos2_marked
+
+
+@test isless(pos1, pos2_nomark)
+@test isless(pos1, pos2_marked)
+@test isless(pos1_nomark, pos2_nomark)
+@test isless(pos1_nomark, pos2_marked)
+@test isless(pos1_marked, pos2_nomark)
+@test isless(pos1_marked, pos2_marked)
+
+@test isless(neg2_nomark, neg1)
+@test isless(neg2_marked, neg1)
+@test isless(neg2_nomark, neg1_nomark)
+@test isless(neg2_marked, neg1_nomark)
+@test isless(neg2_nomark, neg1_marked)
+@test isless(neg2_marked, neg1_marked)
+
+@test isequal(pos2       , pos2_nomark)
+@test isequal(pos2       , pos2_marked)
+@test isequal(pos2_nomark, pos2_marked)
+@test isequal(pos2_nomark, pos2)
+@test isequal(pos2_marked, pos2)
+@test isequal(pos2_marked, pos2_marked)
+
+@test !isless(pos2       , pos2_nomark)
+@test !isless(pos2       , pos2_marked)
+@test !isless(pos2_nomark, pos2_marked)
+@test !isless(pos2_nomark, pos2)
+@test !isless(pos2_marked, pos2)
+@test !isless(pos2_marked, pos2_marked)
+
+pos3_nomark = pos1_nomark + pos2_nomark
+pos3_marked = pos1_nomark + pos2_marked
+@test !ismarked(pos3_nomark)
+@test ismarked(pos3_marked)
+@test pos3_nomark == pos3_marked
+@test pos3_nomark == 3
