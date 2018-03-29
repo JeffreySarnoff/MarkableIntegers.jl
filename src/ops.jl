@@ -77,7 +77,8 @@ for F in(:flipsign, :copysign,
 end
 
 
-string(x::T) where {T<:MarkableInteger} = string(itype(T)(x))
+string(x::T) where {T<:MarkableSigned} = string(ityped(x) >> 1)
+string(x::T) where {T<:MarkableUnsigned} = string(ityped(x) >> 1)
 
 show(io::IO, x::T) where {T<:MarkableInteger} = print(io, string(x))
 show(x::T) where {T<:MarkableInteger} = show(StdOut, x)
