@@ -42,16 +42,47 @@ true
 ```
 """ Marked
 
+"""
+```julia
+three = 3
+3
+markable_three = Markable(three)
+3
+isunmarked(markable_three)
+true
+@mark!(markable_three)
+3
+ismarked(markable_three)
+true
+```
+""" @mark!
 
+"""
+```julia
+three = 3
+3
+markable_three = Markable(three)
+3
+isunmarked(markable_three)
+true
+@mark!(markable_three)
+3
+ismarked(markable_three)
+true
+@unmark!(markable_three)
+3
+ismarked(markable_three)
+false
+```
+""" @unmark!
 
-   Markable(Unsigned) -> MarkableUnsigned
-export Markable,                   # f(x::Signed) -> MarkableSigned, MarkableUnsigned
-       Marked, Unmarked,           # apply to Signed and Unsigned Integers
-                                             # 
-       @mark!, @unmark!,                     # use with MarkableIntegers
-    MInt128, MInt64, MInt32, MInt, MInt16,
-    MInt8, MUInt128, MUInt64, MUInt32, MUInt,
-    MUInt16, MUInt8, mark, unmark, ismarked, @mark!, @unmark!
+export Markable,
+       Marked, Unmarked,
+       @mark!, @unmark!,
+       ismarked, isunmarked,
+       MarkInt128, MarkInt64, MarkInt32, MarkInt16, MarkInt8, MarkInt,
+       MarkUInt128, MarkUInt64, MarkUInt32, MarkUInt16, MarkUInt8, MarkUInt,
+       MarkableSigned, MarkableUnsigned, MarkableInteger
 
 import Base: @pure, sizeof, signed, unsigned,
     leading_zeros, trailing_zeros, leading_ones, trailing_ones,
@@ -64,17 +95,17 @@ import Base.Math: zero, one, iszero, isone, isinteger, typemax, typemin,
     (+), (-), (*), (/), (%), div, fld, cld, mod, rem, sqrt, cbrt
 
 
+
 macro mark!(x)
     quote
-        $(esc(x)) = mark($(esc(x)))
-        return nothing
+        $(esc(x)) = reinterpret(typeof($(esc(x))), 
+                                lsbit(typeof($(esc(x)))) | ($(esc(x))))
     end
 end
 
 macro unmark!(x)
     quote
-        $(esc(x)) = unmark($(esc(x)))
-        return nothing
+        $(esc(x)) = reinterpret(typeof($(esc(x))), msbitsof($(esc(x))))
     end
 end
 
