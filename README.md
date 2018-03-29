@@ -17,7 +17,9 @@
 ----
 ## Introduction
 
-There are `Markable` versions of each `Signed` (`Int8`, `Int16`, `Int32`, `Int64`, `Int128`) and each `Unsigned` (`UInt8`, `UInt16`, `UInt32` ,`UInt64`, `UInt128`) type.  The `Markable` types' names are prefixed with `Mark` (`MarkInt32`, `MarkUInt64`).  For most uses, you do not need to be that specific.  Variables that hold markable integers are initialized with (constructed from) some `Signed` or `Unsigned` value (or with e.g. `zero(MarkInt)`, `one(MarkInt16)`).
+There are `Markable` versions of each `Signed` (`Int8`, `Int16`, `Int32`, `Int64`, `Int128`) and each `Unsigned` (`UInt8`, `UInt16`, `UInt32` ,`UInt64`, `UInt128`) type.  The `Markable` types are prefixed with `Mark` (`MarkInt32`, `MarkUInt64`).
+
+For most uses, you do not need to be that specific.  Variables that hold markable integers are initialized with (constructed from) some `Signed` or `Unsigned` value (or with e.g. `zero(MarkInt)`, `one(MarkInt16)`).
 
 You can use `Unmarked` or `Marked` with any legitimate initializer and forget about the specific type names. `ismarked` and `isunmarked` are provided to ascertain markedness following computation.
 
