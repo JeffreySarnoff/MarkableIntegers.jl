@@ -103,42 +103,36 @@ julia> typeof(two), typeof(three)
 
 ----
 
-## Types
+## Exports
 
-#### abstract and collective
-- MarkableInteger, MarkableSigned, MarkableUnsigned
+#### Constructors
+- Unmarked, Marked
+- Signed, Unsigned
 
-#### concrete
-- MarkInt, MarkInt8, MarkInt16, MarkInt32, MarkInt64, MarkInt128
-- MarkUInt, MarkUInt8, MarkUInt16, MarkUInt32, MarkUInt64, MarkUInt128
+#### Abstract and Collective Types
+- `MarkableInteger`, `MarkableSigned`, `MarkableUnsigned`
 
+#### Concrete Types
+- `MarkInt`, `MarkInt8`, `MarkInt16`, `MarkInt32`, `MarkInt64`, `MarkInt128`
+- `MarkUInt`, `MarkUInt8`, `MarkUInt16`, `MarkUInt32`, `MarkUInt64`, `MarkUInt128`
 
-## Examples
-```julia
-julia> using MarkableIntegers
+#### Predicates
+ - `ismarked`, `isunmarked`
+ 
+#### Comparatives
+  - `==`, `!=`, `<=`, `<`, `>=`, `>`
+  - `isless`, `isequal`
 
-julia> markable5  = MarkInt(5)
-5
-julia> !ismarked(markable5)
-true
+#### Bitwise Primitives (wip)
+  - `leading_zeros`, `trailing_zeros`, `leading_ones`, `trailing_ones`
+  - `count_zeros`, `count_ones`
 
-julia> @mark!(markable5)          # markable Ints can be marked
-julia> ismarked(markable5)
-true
-julia> @unmark!(markable5)        # and unmarked
-5
-julia> ismarked(markable5)
-true
-julia> @mark!(markable5)          # and remarked
-5
-julia> ismarked(markable5)
-true
+#### Bitwise Logic
+- `~`, `&`, `|`, `⊻`
+  
+#### Math
+  - `abs`, `signbit`, `sign`
+  - `+`, `-`, `*`, `div`, `fld`, `cld`, `rem`, `mod`
+  - `/`
+  
 
-julia> markable5  = MarkUInt(5);
-julia> unmarked5  = markable5;
-
-julia> @mark!(markable5)
-5
-julia> markable5 == unmarked5   # marked and unmarked vars compare properly
-true
-```
