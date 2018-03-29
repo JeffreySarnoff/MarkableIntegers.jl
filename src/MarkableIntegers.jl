@@ -10,7 +10,7 @@ export Marked, Unmarked,
        MarkableSigned, MarkableUnsigned, MarkableInteger
 
 import Base: @pure, promote_type, promote_rule, convert, mark, unmark, ismarked,
-    Signed, Unsigned, signed, unsigned,
+    Integer, Signed, Unsigned, signed, unsigned,
     leading_zeros, trailing_zeros, leading_ones, trailing_ones,
     convert, promote_rule, string, show,
     (<=), (<), (==), (!=), (>=), (>), isless, isequal,
