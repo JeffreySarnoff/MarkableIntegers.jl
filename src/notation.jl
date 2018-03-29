@@ -16,27 +16,27 @@ for (M,I) in ((:MarkInt128, :Int128), (:MarkInt64, :Int64),
               (:MarkUInt128, :UInt128), (:MarkUInt64, :UInt64), 
               (:MarkUInt32, :UInt32), (:MarkUInt16, :UInt16), (:MarkUInt8, :UInt8))
   @eval begin
-    ismarked(x::$M) = isodd(reinterpret($I, x))
-    isunmarked(x::$M) = iseven(reinterpret($I, x))
-    ismarked(x::$I) = false
-    isunmarked(x::$I) = true
-    mark(x::$M) = reinterpret($M, reinterpret($I,x) | lsbit($I))
-    unmark(x::$M) = reinterpret($M, reinterpret($I,x) & msbits($I))
-    mark(x::$I) = Marked(x)
-    unmark(x::$I) = Unmarked(x)
+    @inline ismarked(x::$M) = isodd(reinterpret($I, x))
+    @inline isunmarked(x::$M) = iseven(reinterpret($I, x))
+    @inline ismarked(x::$I) = false
+    @inline isunmarked(x::$I) = true
+    @inline mark(x::$M) = reinterpret($M, reinterpret($I,x) | lsbit($I))
+    @inline unmark(x::$M) = reinterpret($M, reinterpret($I,x) & msbits($I))
+    @inline mark(x::$I) = Marked(x)
+    @inline unmark(x::$I) = Unmarked(x)
     
-    mtype(::Type{$I}) = $M
-    mtype(::Type{$M}) = $M
-    itype(::Type{$I}) = $I
-    itype(::Type{$M}) = $I
-    mtype(x::$I) = reinterpret($M,x)
-    mtype(x::$M) = x
-    itype(x::$I) = x
-    itype(x::$M) = reinterpret($I,x)
-    mtyped(x::$I) = $M(x)
-    mtyped(x::$M) = x
-    ityped(x::$M) = $I(x)
-    ityped(x::$I) = x
+    @inline mtype(::Type{$I}) = $M
+    @inline mtype(::Type{$M}) = $M
+    @inline itype(::Type{$I}) = $I
+    @inline itype(::Type{$M}) = $I
+    @inline mtype(x::$I) = reinterpret($M,x)
+    @inline mtype(x::$M) = x
+    @inline itype(x::$I) = x
+    @inline itype(x::$M) = reinterpret($I,x)
+    @inline mtyped(x::$I) = $M(x)
+    @inline mtyped(x::$M) = x
+    @inline ityped(x::$M) = $I(x)
+    @inline ityped(x::$I) = x
   end
 end
 
