@@ -4,7 +4,8 @@ module MarkableIntegers
 
 export Marked, Unmarked,
        @mark!, @unmark!,
-       ismarked, isunmarked, allmarked, allunmarked,
+       ismarked, isunmarked,
+       find_marked, find_unmarked, all_marked, all_unmarked,
        MarkInt128, MarkInt64, MarkInt32, MarkInt16, MarkInt8, MarkInt,
        MarkUInt128, MarkUInt64, MarkUInt32, MarkUInt16, MarkUInt8, MarkUInt,
        MarkableSigned, MarkableUnsigned, MarkableInteger
