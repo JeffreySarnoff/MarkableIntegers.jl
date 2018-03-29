@@ -75,7 +75,7 @@ for (M,I) in ((:MarkInt128, :Int128), (:MarkInt64, :Int64),
   end
 end
 
-findall(x::Vector{T}) where {T<:MarkableInteger}  = findall(map(ismarked, x))
-findallnot(x) = map((!),findall(x))
-allmarked(x::Vector{T}) where {T<:MarkableInteger}   = x[findall(x)]
-allunmarked(x::Vector{T}) where {T<:MarkableInteger} = x[findallnot(x)]
+find_marked(x::Vector{T}) where {T<:MarkableInteger}  = findall(map(ismarked, x))
+find_unmarked(x::Vector{T}) where {T<:MarkableInteger}  = findall(map(isunmarked, x))
+all_marked(x::Vector{T}) where {T<:MarkableInteger} = x[find_marked(x)]
+all_unmarked(x::Vector{T}) where {T<:MarkableInteger} = x[find_unmarked(x)]
