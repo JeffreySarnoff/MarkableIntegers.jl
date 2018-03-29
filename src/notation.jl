@@ -54,13 +54,6 @@ for (M,I) in ((:MarkInt128, :Int128), (:MarkInt64, :Int64),
     @inline ismarked(x::$I) = false
     @inline isunmarked(x::$I) = true
 
-    @inline mark_unmarked(x::$M) = reinterpret($M, (reinterpret($I, x) | lsbit($I)))
-    @inline unmark_marked(x::$M) = reinterpret($M, (msbitsof(reinterpret($I, x))))
-    @inline mark(x::$M) = ismarked(x) ? x : mark_unmarked(x)
-    @inline unmark(x::$M) = isunmarked(x) ? x : unmark_marked(x)
-    @inline mark(x::$I) = Marked(x)
-    @inline unmark(x::$I) = Unmarked(x)
-    
     @inline mtype(::Type{$I}) = $M
     @inline mtype(::Type{$M}) = $M
     @inline itype(::Type{$I}) = $I
@@ -73,6 +66,12 @@ for (M,I) in ((:MarkInt128, :Int128), (:MarkInt64, :Int64),
     @inline mtyped(x::$M) = x
     @inline ityped(x::$M) = $I(x)
     @inline ityped(x::$I) = x
+        
+
+    @inline mark_unmarked(x::$M) = reinterpret($M, (reinterpret($I, x) | lsbit($I)))
+    @inline unmark_marked(x::$M) = reinterpret($M, (msbitsof(reinterpret($I, x))))
+    @inline mark(x::$M) = ismarked(x) ? x : mark_unmarked(x)
+    @inline unmark(x::$M) = isunmarked(x) ? x : unmark_marked(x) 
   end
 end
 
