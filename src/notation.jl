@@ -1,3 +1,15 @@
+macro mark!(x)
+    quote
+        $(esc(x)) = reinterpret(typeof($(esc(x))), 
+                                lsbit(typeof($(esc(x)))) | ($(esc(x))))
+    end
+end
+
+macro unmark!(x)
+    quote
+        $(esc(x)) = reinterpret(typeof($(esc(x))), msbitsof($(esc(x))))
+    end
+end
 
 for (M,I) in ((:MarkInt128, :Int128), (:MarkInt64, :Int64), 
               (:MarkInt32, :Int32), (:MarkInt16, :Int16), (:MarkInt8, :Int8),
