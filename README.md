@@ -61,7 +61,6 @@ false
 ```julia
 julia> ten = Unmarked(10);
 julia> sixteen = Marked(16);
-
 julia> @mark!(ten)
 10
 julia> @unmark!(sixteen)
@@ -78,39 +77,18 @@ MarkableSigned integers readily convert to Signed and MarkableUnsigned integers 
 
 ```julia
 
-julia-0.7> markable_two = Unmarked(Int64(2))
-2
-
-julia-0.7> markable_three = Marked(UInt16(3))
-0x0003
-
-julia-0.7> two = Signed(markable_two)
-2
-
-julia-0.7> three = Unsigned(markable_three)
-0x0003
-
-julia-0.7> typeof(two), typeof(three)
-(Int64, UInt16)
-
-julia> markable_two = Unmarked(Int64(2))
-2
-
-julia> markable_three = Marked(UInt16(3))
-3
+julia> markable_two = Unmarked(Int64(2));
+julia> markable_three = Marked(UInt16(3));
 
 julia> typeof(markable_two), typeof(markable_three)
 (MarkInt64, MarkUInt16)
 
-julia> two = Signed(markable_two)
-2
-
-julia> three = Unsigned(markable_three)
-0x0003
+julia> two = Signed(markable_two);
+julia> three = Unsigned(markable_three);
 
 julia> typeof(two), typeof(three)
 (Int64, UInt16)
-
+```
 
 ----
 
