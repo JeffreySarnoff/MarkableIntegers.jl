@@ -1,7 +1,23 @@
-for OP in (:(==), :(!=), :(<=), :(>=), :(<), :(>))
+ffor OP in (:(==), :(!=), :(<=), :(>=), :(<), :(>))
     @eval begin
-        $OP(a::T, b::T) where {T<:MarkSigned}   = $OP(signed(a), signed(b))
-        $OP(a::T, b::T) where {T<:MarkUnsigned} = $OP(unsigned(a), unsigned(b))
+        function $OP(a::T, b::T) where {T<:MarkableInteger}
+            ia = ityped(a)
+            ib = ityped(b)
+            return $OP(ia, ib)
+        end
+        function $OP(a::T1, b::T2) where {T1<:MarkableInteger, T2<:MarkableInteger}
+            ia = ityped(a)
+            ib = ityped(b)
+            return $OP(ia, ib)
+        end
+        function $OP(a::T1, b::T2) where {T1<:MarkableInteger, T2<:Union{Signed,Unsigned}}
+            ia = ityped(a)
+            return $OP(ia, b)
+        end
+        function $OP(a::T1, b::T2) where {T2<:MarkableInteger, T1<:Union{Signed,Unsigned}}
+            ib = ityped(b)
+            return $OP(a, ib)
+        end
     end
 end
 
