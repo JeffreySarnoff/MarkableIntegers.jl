@@ -2,8 +2,7 @@ __precompile__()
 
 module MarkableIntegers
 
-export Markable,
-       Marked, Unmarked,
+export Marked, Unmarked,
        @mark!, @unmark!,
        ismarked, isunmarked, allmarked, allunmarked,
        MarkInt128, MarkInt64, MarkInt32, MarkInt16, MarkInt8, MarkInt,
