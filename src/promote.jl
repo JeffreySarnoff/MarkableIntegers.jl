@@ -73,3 +73,15 @@ MarkUInt64(x::MarkUInt8) = ismarked(x) ? Marked(UInt64(itype(x))) : Unmarked(UIn
 MarkUInt32(x::MarkUInt16) = ismarked(x) ? Marked(UInt32(itype(x))) : Unmarked(UInt32(itype(x)))
 MarkUInt32(x::MarkUInt8) = ismarked(x) ? Marked(UInt32(itype(x))) : Unmarked(UInt32(itype(x)))
 MarkUInt16(x::MarkUInt8) = ismarked(x) ? Marked(UInt16(itype(x))) : Unmarked(UInt16(itype(x)))
+
+
+
+MarkInt128(x::I) where {I<:Union{Int64, Int32, Int16, Int8}} = MarkInt128(Int128(x))
+MarkUInt128(x::I) where {I<:Union{UInt64, UInt32, UInt16, UInt8}} = MarkUInt128(UInt128(x))
+MarkInt64(x::I) where {I<:Union{Int32, Int16, Int8}} = MarkInt64(Int64(x))
+MarkUInt64(x::I) where {I<:Union{UInt32, UInt16, UInt8}} = MarkUInt64(UInt64(x))
+MarkInt32(x::I) where {I<:Union{Int16, Int8}} = MarkInt32(Int32(x))
+MarkUInt32(x::I) where {I<:Union{UInt16, UInt8}} = MarkUInt32(UInt32(x))
+MarkInt16(x::Int8) = MarkInt16(Int16(x))
+MarkUInt16(x::UInt8) = MarkUInt16(UInt16(x))
+
