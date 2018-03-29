@@ -2,80 +2,6 @@ __precompile__()
 
 module MarkableIntegers
 
-"""
-   Markable(::Type{<:Signed})   ⇢ T<:MarkableSigned
-   Markable(::Type{<:Unsigned}) ⇢ T<:MarkableUnsigned
-
-MarkInt16 === Markable(Int16)
-
-""" Markable
-
-"""
-   Unmarked(x<:Signed)   ⇢ x<:MarkableSigned    && isunmarked(x)
-   Unmarked(x<:Unsigned) ⇢ x<:MarkableUnsigned  && isunmarked(x)
-
-```julia
-three = 3
-3
-unmarked_three = Unmarked(three)
-3
-isunmarked(unmarked_three)
-true
-!ismarked(unmarked_three)
-true
-```
-""" Unmarked
-
-"""
-   Marked(x<:Signed)   ⇢ x<:MarkableSigned    && ismarked(x)
-   Marked(x<:Unsigned) ⇢ x<:MarkableUnsigned  && ismarked(x)
-
-```julia
-three = 3
-3
-marked_three = Marked(three)
-3
-ismarked(marked_three)
-true
-!isunmarked(marked_three)
-true
-```
-""" Marked
-
-"""
-```julia
-three = 3
-3
-markable_three = Markable(three)
-3
-isunmarked(markable_three)
-true
-@mark!(markable_three)
-3
-ismarked(markable_three)
-true
-```
-""" @mark!
-
-"""
-```julia
-three = 3
-3
-markable_three = Markable(three)
-3
-isunmarked(markable_three)
-true
-@mark!(markable_three)
-3
-ismarked(markable_three)
-true
-@unmark!(markable_three)
-3
-ismarked(markable_three)
-false
-```
-""" @unmark!
-
 export Markable,
        Marked, Unmarked,
        @mark!, @unmark!,
@@ -106,7 +32,7 @@ include("promote.jl")
 include("notation.jl")
 include("bits.jl")
 include("compare.jl")
-
+include("ops.jl")
 
 
 end # module MarkableIntegers
