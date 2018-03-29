@@ -101,6 +101,30 @@ julia> typeof(two), typeof(three)
 (Int64, UInt16)
 ```
 
+You can obtain the indices of all marked or all unmarked constituents with `find_marked`, `find_unmarked`. You can obtain the values of all marked and of all unmarked constituents with `all_marked`, `all_unmarked`.
+
+```julia
+julia> seq = [Marked(1), Unmarked(20), Unmarked(300), Marked(4000), Unmarked(1)];
+julia> find_marked(seq)
+2-element Array{Int64,1}:
+ 1
+ 4
+julia> all_marked(seq)
+2-element Array{MarkInt64,1}:
+    1
+ 4000
+julia> find_unmarked(seq)
+3-element Array{Int64,1}:
+ 2
+ 3
+ 5
+julia> all_unmarked(seq)
+3-element Array{MarkInt64,1}:
+  20
+ 300
+   1
+```
+
 ----
 
 ## Exports
@@ -118,6 +142,10 @@ julia> typeof(two), typeof(three)
 
 #### Predicates
  - `ismarked`, `isunmarked`
+
+#### Collectors
+ - `find_marked`, `find_unmarked`
+ - `all_marked`, `all_unmarked`
  
 #### Comparatives
   - `==`, `!=`, `<=`, `<`, `>=`, `>`
