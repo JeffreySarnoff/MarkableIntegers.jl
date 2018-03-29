@@ -91,6 +91,10 @@ msbits(::Type{MarkInt128})   = reinterpret(MarkInt128, 0xfffffffffffffffffffffff
     bitand(reinterpret(itype(T),x), lsbit(itype(T)))
 @inline msbitsof(x::T) where {T<:MarkableInteger} =
     bitand(reinterpret(itype(T),x), msbits(itype(T)))
+@inline lsbitof(x::T) where {T<:Union{Signed,Unsigned}}  =
+    bitand(x, lsbit(itype(T)))
+@inline msbitsof(x::T) where {T<:Union{Signed,Unsigned}} =
+    bitand(x, msbits(itype(T)))
 
 # for propogation of marks through operations
 @inline any_lsbits(a::T) where {T<:MarkableInteger} = lsbitof(a)
