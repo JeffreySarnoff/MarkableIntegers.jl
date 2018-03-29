@@ -101,6 +101,7 @@ end
     return reinterpret(M, msbitsof(x))
 end
 
+Markable(x) = Unmarked(x)
 
 """
    Markable(::Type{<:Signed})   ⇢ T<:MarkableSigned
