@@ -59,3 +59,24 @@ pos3_marked = pos1_nomark + pos2_marked
 @test ismarked(pos3_marked)
 @test pos3_nomark == pos3_marked
 @test pos3_nomark == 3
+
+@test pos2_nomark * neg2_nomark == -4
+tst = div(pos3_nomark, pos2_marked)
+@test ismarked(tst)
+@test tst == div(3,2)
+tst = fld(pos3_nomark, pos2_marked)
+@test ismarked(tst)
+@test tst == fld(3,2)
+tst = cld(pos3_nomark, pos2_nomark)
+@test isunmarked(tst)
+@test tst == cld(3,2)
+tst = mod(pos3_nomark, pos2_marked)
+@test ismarked(tst)
+@test tst == mod(3,2)
+tst = rem(pos3_nomark, pos2_nomark)
+@test isunmarked(tst)
+@test tst == rem(3,2)
+
+tst = pos3_nomark | 8
+@test typeof(tst) == typeof(pos3_nomark)
+@test tst == 3|8
