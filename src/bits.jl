@@ -87,8 +87,10 @@ msbits(::Type{MarkInt64})    = reinterpret(MarkInt64, 0xfffffffffffffffe)
 msbits(::Type{MarkInt128})   = reinterpret(MarkInt128, 0xfffffffffffffffffffffffffffffffe)
 
 # for isolation of mark, nomark bits
-@inline lsbitof(x::T) where {T<:MarkableInteger}  = bitand(reinterpret(itype(T),x), lsbit(itype(T)))
-@inline msbitsof(x::T) where {T<:MarkableInteger} = bitand(reinterpret(itype(T),x), msbits(itype(T)))
+@inline lsbitof(x::T) where {T<:MarkableInteger}  =
+    bitand(reinterpret(itype(T),x), lsbit(itype(T)))
+@inline msbitsof(x::T) where {T<:MarkableInteger} =
+    bitand(reinterpret(itype(T),x), msbits(itype(T)))
 
 # for propogation of marks through operations
 @inline any_lsbits(a::T) where {T<:MarkableInteger} = lsbitof(a)
