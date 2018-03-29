@@ -101,7 +101,7 @@ julia> typeof(two), typeof(three)
 (Int64, UInt16)
 ```
 
-You can obtain the indices of all marked or all unmarked constituents with `find_marked`, `find_unmarked`. You can obtain the values of all marked and of all unmarked constituents with `all_marked`, `all_unmarked`.
+You can obtain the indices of all marked and all unmarked constituents with `find_marked`, `find_unmarked`. You can obtain the values of all marked and of all unmarked constituents with `all_marked`, `all_unmarked`.
 
 ```julia
 julia> seq = [Marked(1), Unmarked(20), Unmarked(300), Marked(4000), Unmarked(1)];
