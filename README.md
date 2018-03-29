@@ -28,6 +28,13 @@ MarkableIntegers bring the ability to provide and refine algorithmic focus into 
 
 An easy way to find more lengthy runs of marked values is to run length encode the Bool sequence obtained with map(ismarked, seq).  A way to find more highly valued regions of marked values is to sum over each run.
 
+One may mark values which are inconsistent with an underlying model or are otherwise suspect (e.g. values that appear to be "drop outs").  The unmarked values could then provide a neater view with which to begin exploration. Or, the marked values may be used as targets for simple fitting to provide a more digestable version of the info.
+
+With evolutionary or swarm intellegence approaches (simulated annealing, ant colony, tabu search, ...) better solution spaces develop through process.  There may be an opportunity for speedup by using local markers to influence aspects of the process.
+
+
+
+
 ----
 ## Introduction
 
