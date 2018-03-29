@@ -21,9 +21,14 @@ ffor OP in (:(==), :(!=), :(<=), :(>=), :(<), :(>))
     end
 end
 
-isless(a::T, b::T)  where{T<:MarkSigned} = signed(a) <  signed(b)
-isequal(a::T, b::T) where{T<:MarkSigned} = signed(a) == signed(b)
+function isless(a::T, b::T)  where{T<:MarkableInteger}
+    itype(a) === itype(b) && return false
+    a_nomark = unmark(a)
+    b_nomark = unmark(b)
+    a_nomark === b_nomark && return ismarked(a)
+    a_nomark < b_nomark
+end
 
-isless(a::T, b::T)  where{T<:MarkUnsigned} = unsigned(a) <  unsigned(b)
-isequal(a::T, b::T) where{T<:MarkUnsigned} = unsigned(a) == unsigned(b)
-
+@inline function isequal(a::T, b::T)  where{T<:MarkableInteger}
+    itype(a) === itype(b)
+end
