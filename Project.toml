@@ -1,0 +1,6 @@
+name = "MarkableIntegers"
+uuid = "0913cafa-90c8-523e-aa68-da9dd2ac225d"
+repo = "https://github.com/JeffreySarnoff/MarkableIntegers.jl.git"
+author = "Jeffrey Sarnoff"
+license = "MIT"
+version = "v0.0.1"
